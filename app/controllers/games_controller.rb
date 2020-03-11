@@ -1,21 +1,30 @@
 class GamesController < ApplicationController
-
-  # returns json for the index page at /games
   def index
-    games = Game.all.map do |x| 
-      { 
-        id: x.id,
-        name: x.name,
-        url: "http://localhost:3000" + x.image.url
-      }
+    games = Game.all
+      .select{|game| game.active == true}
+      .sort_by{|game| game.year}
+      .map do |x| 
+        { 
+          id: x.id,
+          name: x.name,
+          year: x.year,
+          publisher: x.manufacturer,
+        }
     end
     
     render json: games
   end
 
-  # return json for the details of the game at /games/:id
   def show
-    render json: "test"
+    game = Game.find(params[:id])
+      render json: {
+        id: game.id,
+        name: game.name,
+        year: game.year,
+        publisher: game.manufacturer,
+        description: game.description,
+        image: request.protocol + request.host_with_port + game.image.url
+      }
   end
 
 
