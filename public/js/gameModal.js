@@ -1,4 +1,4 @@
-function fetchModal( id ) {
+var fetchModal = function ( id ) {
   $.get("/games/"+ id)
       .done(function ( data ) {
           buildModal( data );
@@ -9,7 +9,7 @@ function fetchModal( id ) {
       })
 }
 
-function buildModal( game ) {
+var buildModal = function ( game ) {
   $('#modalContainer').replaceWith(`
       <div id="modalContainer">
           <div class="modal fade" id="gameModal" tabindex="-1" role="dialog" aria-hidden="true">

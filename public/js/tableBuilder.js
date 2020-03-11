@@ -1,3 +1,8 @@
+$(document).ready(function () {
+    loadTable();
+});
+
+var loadTable = function() {
 $.get( "/games")
   .done(function ( data ) {
       CreateTableFromJSON( data );
@@ -5,8 +10,9 @@ $.get( "/games")
   .fail( function () {
       alert( "Error in network call, please try again.")
   })
+}
 
-function CreateTableFromJSON( gamesJSON ) {
+var CreateTableFromJSON = function( gamesJSON ) {
   var cols = ['Name', 'Year', 'Publisher'];
   var colsLwr = cols.map(function(ele) { return ele.toLowerCase(); });
   var table = document.createElement("table");
