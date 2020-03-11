@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   def index
-    games = Game.all
+    @games = Game.all
       .select{|game| game.active == true}
       .sort_by{|game| game.year}
       .map do |x| 
@@ -12,20 +12,18 @@ class GamesController < ApplicationController
         }
     end
     
-    render json: games
+    render json: @games
   end
 
   def show
-    game = Game.find(params[:id])
+    @game = Game.find(params[:id])
       render json: {
-        id: game.id,
-        name: game.name,
-        year: game.year,
-        publisher: game.manufacturer,
-        description: game.description,
-        image: request.protocol + request.host_with_port + game.image.url
+        id: @game.id,
+        name: @game.name,
+        year: @game.year,
+        publisher: @game.manufacturer,
+        description: @game.description,
+        image: request.protocol + request.host_with_port + @game.image.url
       }
   end
-
-
 end
