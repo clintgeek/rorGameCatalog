@@ -1,5 +1,12 @@
 # App Team Code Challenge
 
+## Completion Notes
+- Javascript unit tests (Jasmine) can be viewed at [js/tests/SpecRunner.html](http://localhost:3000/js/tests/SpecRunner.html)
+- The front end was done in JQuery and Bootstrap
+- The ApplicationMailer is setup but lacking credentials
+- The Rails tests are done in RSpec
+- The rake task to like a game is ```bundle exec rake games:like[game_id,ip_address]```
+
 ## Classic Video Game Web App
 This coding challenge will test your ability to modify and add onto a small web application.  You can use any documentation: Google, Stack Overflow and any IDE.  Rails and Sqlite have already been configured with some stubbed out code.  You can use third party libraries such as ActiveRecord, JQuery, AngularJS, Ruby Gems, etc.
 
