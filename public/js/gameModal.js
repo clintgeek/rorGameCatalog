@@ -4,8 +4,6 @@ $(document.body).on('hidden.bs.modal', function () {
 });
 
 var fetchModal = function ( id ) {
-  console.log('in fM, id: ', id);
-    
   $.get("/games/"+ id)
     .done(function ( data ) {
       buildModal( data );

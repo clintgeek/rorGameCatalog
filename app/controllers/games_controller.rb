@@ -16,7 +16,6 @@ class GamesController < ApplicationController
   end
 
   def like
-    puts "inside games like"
     @game = Game.find(params[:game_id])
     @game.likes.create()
   end
