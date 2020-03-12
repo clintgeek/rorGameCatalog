@@ -11,13 +11,7 @@ class GamesController < ApplicationController
           publisher: x.manufacturer,
         }
     end
-
     render json: @games
-  end
-
-  def like
-    @game = Game.find(params[:game_id])
-    @game.likes.create()
   end
 
   def show
