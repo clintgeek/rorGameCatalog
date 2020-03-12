@@ -11,8 +11,14 @@ class GamesController < ApplicationController
           publisher: x.manufacturer,
         }
     end
-    
+
     render json: @games
+  end
+
+  def like
+    puts "inside games like"
+    @game = Game.find(params[:game_id])
+    @game.likes.create()
   end
 
   def show
@@ -23,7 +29,8 @@ class GamesController < ApplicationController
         year: @game.year,
         publisher: @game.manufacturer,
         description: @game.description,
-        image: request.protocol + request.host_with_port + @game.image.url
+        image: request.protocol + request.host_with_port + @game.image.url,
+        likes: @game.likes.count
       }
   end
 end

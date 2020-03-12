@@ -1,12 +1,26 @@
+$(document.body).on('hidden.bs.modal', function () {
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+});
+
 var fetchModal = function ( id ) {
+  console.log('in fM, id: ', id);
+    
   $.get("/games/"+ id)
-      .done(function ( data ) {
-          buildModal( data );
-          $("#gameModal").modal('show');
-      })
-      .fail( function () {
-          alert( "Error in network call, please try again.")
-      })
+    .done(function ( data ) {
+      buildModal( data );
+      $("#gameModal").modal('show');
+    })
+    .fail( function () {
+      alert( "Error in network call, please try again.")
+    })
+}
+
+var sendLike = function ( id ) {
+  $.post("/games/" + id + "/likes/")
+    .then(function () {
+      fetchModal(id);
+    })
 }
 
 var buildModal = function ( game ) {
@@ -34,6 +48,7 @@ var buildModal = function ( game ) {
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary" onclick="sendLike(${game.id})">Like &#x1f44d; (${game.likes})</button>
                       </div>
                   </div>
               </div>

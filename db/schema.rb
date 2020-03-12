@@ -10,20 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810225714) do
+ActiveRecord::Schema.define(version: 2020_03_12_000621) do
 
   create_table "games", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "year"
-    t.string   "manufacturer"
-    t.boolean  "active"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
+    t.string "name"
+    t.text "description"
+    t.integer "year"
+    t.string "manufacturer"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.string "user"
+    t.integer "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_likes_on_game_id"
   end
 
 end
